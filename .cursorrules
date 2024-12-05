@@ -1,0 +1,21 @@
+always think step by step
+always provide enhanced logging end debugging which can be turned on and off by changing the value of a variable DEBUG (true / false)
+always use gpt-4o-mini model for summarization!
+please see below code snipet for gpt-4o-mini integration
+### gpt-4o-mini integration
+```
+import OpenAI from "openai";
+
+const openai = new OpenAI();
+
+async function main() {
+  const completion = await openai.chat.completions.create({
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+    model: "gpt-4o-mini",
+  });
+
+  console.log(completion.choices[0]);
+}
+
+main();
+```
