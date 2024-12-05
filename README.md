@@ -96,6 +96,178 @@ The application supports three different search modes:
 - Includes more context and background
 - Best for: Content creation and research
 
+## Production Check
+
+To check the application in production mode locally:
+
+1. Set environment variable:
+
+```env
+NODE_ENV=production
+```
+
+2. Build the application:
+
+```bash
+npm run build
+```
+
+3. Start production server:
+
+```bash
+npm run start
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+What to check:
+- ✓ All environment variables load correctly
+- ✓ Search works with both providers (Exa.ai and Serper)
+- ✓ Summarization works with selected OpenAI model
+- ✓ All search modes function properly
+- ✓ Dark/light theme switches correctly
+- ✓ Sources display properly
+- ✓ Follow-up questions work
+
+### Production Debugging
+
+If issues arise:
+
+1. Check build logs:
+
+```bash
+npm run build
+# Look for errors in the output
+```
+
+2. Enable debug mode:
+
+```env
+NEXT_PUBLIC_DEBUG=true
+```
+
+3. Check server logs:
+
+```bash
+npm run start
+# Monitor console output
+```
+
+4. Check browser console for errors
+
+## Docker Deployment
+
+### Local Docker Setup
+
+1. Create `.env.production` file from `.env.example`:
+
+```bash
+cp .env.example .env.production
+```
+
+2. Edit `.env.production` with your environment variables.
+
+3. Build and run the container:
+
+```bash
+docker-compose up --build
+```
+
+4. Access the application at [http://localhost:3000](http://localhost:3000)
+
+### Server Deployment
+
+1. Prepare the server:
+
+```bash
+# Install Docker and docker-compose
+sudo apt update
+sudo apt install docker.io docker-compose
+```
+
+2. Copy files to server:
+
+```bash
+# Create project directory
+ssh user@your-server "mkdir -p /path/to/app"
+
+# Copy files
+scp docker-compose.yml Dockerfile .env.production user@your-server:/path/to/app/
+```
+
+3. Connect to server and launch:
+
+```bash
+ssh user@your-server
+cd /path/to/app
+docker-compose up -d
+```
+
+### Container Management
+
+- View logs:
+
+```bash
+docker-compose logs -f
+```
+
+- Restart application:
+
+```bash
+docker-compose restart
+```
+
+- Stop application:
+
+```bash
+docker-compose down
+```
+
+- Update to new version:
+
+```bash
+git pull  # get new code
+docker-compose down  # stop current container
+docker-compose up --build -d  # build and start new version
+```
+
+### Monitoring
+
+- Check status:
+
+```bash
+docker-compose ps
+```
+
+- Check resource usage:
+
+```bash
+docker stats
+```
+
+- Check application logs:
+
+```bash
+docker-compose logs -f app
+```
+
+### Security Recommendations
+
+1. Environment Variables:
+   - Don't store sensitive data in repository
+   - Use `.env.production` for production environment
+   - Regularly rotate API keys
+
+2. Network:
+   - Use HTTPS proxy (e.g., Nginx) in front of container
+   - Configure server firewall
+   - Restrict port access
+
+3. Updates:
+   - Regularly update base Node.js image
+   - Monitor dependency updates
+   - Use fixed versions in package.json
+
 ## Project Structure
 
 - `/app` - Next.js app router pages and layouts
@@ -121,4 +293,4 @@ The application supports three different search modes:
 - OpenAI GPT-4
 - Exa.ai Search API
 - TanStack Query
-- Lucide Icons 
+- Lucide Icons
