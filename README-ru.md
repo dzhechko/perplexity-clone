@@ -179,7 +179,7 @@ npm run start
 
 2. Переменные окружения:
    - Убедитесь, что все NEXT_PUBLIC_ переменные доступны на клиенте
-   - Серверные переменные (OPENAI_API_KEY) должны быть установлены на серв��ре
+   - Серверные переменные (OPENAI_API_KEY) должны быть установлены на сервре
 
 3. CORS и прокси:
    - При развертывании убедитесь, что все API endpoints доступны
@@ -189,13 +189,17 @@ npm run start
 
 ### Локальный запуск
 
-1. Создайте файл `.env.production` на основе `.env.example`:
+1. Создайте файл `.env.production` на основе `.env.production.example`:
 
 ```bash
-cp .env.example .env.production
+cp .env.production.example .env.production
 ```
 
-2. Отредактируйте `.env.production`, установив все необходимые переменные окружения.
+2. Отредактируйте `.env.production`, установив все необходимые значения переменных окружения:
+   - `OPENAI_API_KEY` - Ваш ключ OpenAI API
+   - `NEXT_PUBLIC_EXA_API_KEY` - Ваш ключ Exa.ai API
+   - `NEXT_PUBLIC_SERPER_API_KEY` - Ваш ключ Serper API (опционально)
+   - Другие переменные, как указано в файле-примере
 
 3. Соберите и запустите контейнер:
 

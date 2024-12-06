@@ -159,13 +159,17 @@ npm run start
 
 ### Local Docker Setup
 
-1. Create `.env.production` file from `.env.example`:
+1. Create `.env.production` file from `.env.production.example`:
 
 ```bash
-cp .env.example .env.production
+cp .env.production.example .env.production
 ```
 
-2. Edit `.env.production` with your environment variables.
+2. Edit `.env.production` with your environment variables. Make sure to set all required values:
+   - `OPENAI_API_KEY` - Your OpenAI API key
+   - `NEXT_PUBLIC_EXA_API_KEY` - Your Exa.ai API key
+   - `NEXT_PUBLIC_SERPER_API_KEY` - Your Serper API key (optional)
+   - Other variables as specified in the example file
 
 3. Build and run the container:
 
