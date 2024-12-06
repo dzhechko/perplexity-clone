@@ -10,8 +10,12 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем исходный код
+# Копируем исходный код и env файл
 COPY . .
+COPY .env.local .env
+
+# Экспортируем переменные окружения для сборки
+ENV $(cat .env | xargs)
 
 # Собираем приложение
 RUN npm run build

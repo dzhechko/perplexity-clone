@@ -18,9 +18,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # Локальные env файлы
-.env*.local
 .env.development
 .env.test
+!.env.local
+!.env.production
 
 # Верификация
 .vercel
